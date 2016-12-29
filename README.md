@@ -26,4 +26,4 @@ STABLE - 76.97 s
 
 BETA - 73.50 s
 
-Osobisty rekord - 66.03 s (auto zdaje się inaczej zmieniać biegi na sterowniku FCL, więc możliwe, że nie da się pojechać aż tak szybko)
+Osobisty rekord - 63.69 s (auto zdaje się inaczej zmieniać biegi na sterowniku FCL, więc możliwe, że nie da się pojechać aż tak szybko)
