@@ -125,11 +125,11 @@ FUZZIFY speed
 END_FUZZIFY
 
 DEFUZZIFY steering
-  TERM left := (0.05,0)(0.1,1)(0.2,0);
-  TERM turn_left :=  (0.7, 0) (1, 1);
-  TERM stay_center :=  (-0.1, 0) (0, 1) (0.1, 0);
-  TERM turn_right :=  (-1, 1) (-0.7, 0);
-  TERM right := (-0.2,0)(-0.1,1)(-0.05,0);
+  TERM left1 := (0.05,0)(0.1,1)(0.2,0);
+  TERM left2 :=  (0.7, 0) (1, 1);
+  TERM center :=  (-0.1, 0) (0, 1) (0.1, 0);
+  TERM right2 :=  (-1, 1) (-0.7, 0);
+  TERM right1 := (-0.2,0)(-0.1,1)(-0.05,0);
   METHOD : COG;
   DEFAULT := 0.000;
 END_DEFUZZIFY
@@ -155,13 +155,13 @@ RULEBLOCK No1
   ACCU : MAX;
   
 
-  RULE 1 : IF track9 IS far AND track6 IS far THEN steering IS turn_right;
-  RULE 2 : IF track9 IS far AND track12 IS far THEN steering IS turn_left;
-  RULE 3 : IF track0 IS close AND track11 IS far THEN steering IS right;
-  RULE 4 : IF track18 IS close AND track7 IS far THEN steering IS left;
-  RULE 5 : IF speed IS cornering THEN steering IS stay_center;
-  RULE 6 : IF track9 IS far AND track8 IS close THEN steering IS turn_right;
-  RULE 7 : IF track9 IS far AND track10 IS close THEN steering IS turn_left;
+  RULE 1 : IF track9 IS far AND track6 IS far THEN steering IS right2;
+  RULE 2 : IF track9 IS far AND track12 IS far THEN steering IS left2;
+  RULE 3 : IF track0 IS close AND track11 IS far THEN steering IS right1;
+  RULE 4 : IF track18 IS close AND track7 IS far THEN steering IS left1;
+  RULE 5 : IF speed IS cornering THEN steering IS center;
+  RULE 6 : IF track9 IS far AND track8 IS close THEN steering IS right2;
+  RULE 7 : IF track9 IS far AND track10 IS close THEN steering IS left2;
  
 
 
