@@ -8,7 +8,7 @@ Oznaczenia poszczególnych sterowników:
 
 -BETA sterownik w fazie testów, może wypadać z trasy
 
--OLD sterownik przykładowy (najwolniejszy, trzyma się środka trasy i jedzie z minimalną prędkością)
+-SIMPLE sterownik przykładowy (najwolniejszy, trzyma się środka trasy i jedzie z minimalną prędkością)
 
 ## Eliminacje nr 1
 
@@ -20,10 +20,10 @@ Tryb: "Tylko wyniki"
 
 Czasy:
 
-Przykładowy sterownik - 115.67 s
+SIMPLE - 115.67 s
 
-STABLE - 76.97 s
+STABLE - 65.31 s
 
-BETA - 73.50 s
+BETA - 65.31 s
 
 Osobisty rekord - 63.69 s (auto zdaje się inaczej zmieniać biegi na sterowniku FCL, więc możliwe, że nie da się pojechać aż tak szybko)
