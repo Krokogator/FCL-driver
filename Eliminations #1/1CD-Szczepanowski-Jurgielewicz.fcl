@@ -121,7 +121,7 @@ FUZZIFY track18
 END_FUZZIFY
 
 FUZZIFY speed
-  TERM cornering := (170,0)(180,1)(190, 1)(200, 0);
+  TERM cornering := (170,0)(180,1)(191, 1)(210, 0);
 END_FUZZIFY
 
 DEFUZZIFY steering
