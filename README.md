@@ -38,8 +38,8 @@ Tryb: "Tylko wyniki"
 
 Czasy:
 
-STABLE - 198.88 s
+STABLE - 192.82 s  (nie rozbija się)
 
-BETA - 198.88 s
+BETA - 152.50 (rozbija się, ale jest szybszy)
 
-Osobisty rekord - brak
+Osobisty rekord - 148.57s

@@ -84,50 +84,62 @@ FUZZIFY angle
   TERM right := (0, 0) (0.3, 1) (5.15, 1);
 END_FUZZIFY
 
+//0 stopni
+
 FUZZIFY track9
-  TERM brakezone := (0, 1) (200, 1) (210, 0);
-  TERM f200250 := (180, 0) (200, 1) (250, 1);
-  TERM f150200 := (130, 0) (150, 1) (200, 1) (220, 0);
-  TERM f100150 := (80, 0) (100, 1) (150, 1) (170, 0);
-  TERM f50100 := (30, 0) (50, 1) (100, 1) (120, 0);
-  TERM f40 := (35, 0) (40, 1) (45, 0);
-  TERM f1040 := (5, 0) (10, 1) (40, 1) (45, 1);
-  TERM f070 := (0, 1) (70, 1) (75, 0);
-  TERM f020 := (0, 1) (20, 1) (21, 0);
-  TERM f010 := (0, 1) (10, 1) (15, 0);
+  TERM f010 := (0, 1) (7, 1) (10, 0);
+  TERM f2040 := (0, 1) (10, 1) (50, 0);
+  TERM f060 := (0, 1) (60, 1) (65, 0);
 END_FUZZIFY
 
-FUZZIFY track6
-	TERM far := (10,0)(35,1)(60,0);
-END_FUZZIFY
-
-FUZZIFY track8
-	TERM close := (10,0)(20,1)(40,0);
-END_FUZZIFY
-
-FUZZIFY track10
-	TERM close := (10,0)(20,1)(40,0);
-END_FUZZIFY
-
+//10 stopni
 FUZZIFY track7
-	TERM far := (40,0)(60,1)(200,1);
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
 END_FUZZIFY
 
 FUZZIFY track11
-	TERM far := (40,0)(60,1)(200,1);
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
 END_FUZZIFY
 
-FUZZIFY track12
-	TERM far := (10,0)(20,1)(60,0);
+//20 stopni
+
+FUZZIFY track5 
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
 END_FUZZIFY
+
+FUZZIFY track13
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
+END_FUZZIFY
+
+//45 stopni
 
 FUZZIFY track3
-	TERM f010 := (0, 1) (10, 1) (12, 0);
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
 END_FUZZIFY
 
 FUZZIFY track15
-	TERM f010 := (0, 1) (10, 1) (12, 0);
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
 END_FUZZIFY
+
+//60 stopni
+
+FUZZIFY track2
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
+END_FUZZIFY
+
+FUZZIFY track16
+	TERM f40 := (13, 0) (18, 1) (200, 1);
+	TERM fout := (19, 0) (20, 1) (200, 1);
+END_FUZZIFY
+
+//90 stopni
 
 FUZZIFY track0
 	TERM close := (0,1)(1,1)(2,0);
@@ -138,17 +150,25 @@ FUZZIFY track18
 END_FUZZIFY
 
 FUZZIFY speed
+  TERM slow := (0, 1) (100, 1) (130, 0);
   TERM cornering := (170,0)(180,1)(191, 1)(210, 0);
-  TERM f160250 := (159, 0) (160, 1) (250, 1);
+  TERM f150250 := (149, 0) (150, 1) (250, 1);
   TERM f120250 := (119, 0) (120, 1) (250, 1);
+  TERM f50more := (49, 0) (50, 1) (250, 1);
+  TERM f90more := (99, 0) (100, 1) (250, 1);
+  TERM f110more := (119, 0) (120, 1) (250, 1);
 END_FUZZIFY
 
 DEFUZZIFY steering
+  TERM left3 := (0.8, 0) (1, 1);
+  TERM left2 :=  (0.7, 0) (0.8, 1) (0.9, 0);
   TERM left1 := (0.05,0)(0.1,1)(0.2,0);
-  TERM left2 :=  (0.7, 0) (1, 1);
   TERM center :=  (-0.1, 0) (0, 1) (0.1, 0);
-  TERM right2 :=  (-1, 1) (-0.7, 0);
   TERM right1 := (-0.2,0)(-0.1,1)(-0.05,0);
+  TERM right2 :=  (-0.9, 0) (-0.8, 1) (-0.7, 0);
+  TERM right3 := (-1, 1) (-0.8, 0);
+
+
   METHOD : COG;
   DEFAULT := 0.000;
 END_DEFUZZIFY
@@ -172,13 +192,23 @@ RULEBLOCK No1
   AND : MIN;
   ACT : MIN;
   ACCU : MAX;
-  
 
-  RULE 1 : IF track9 IS NOT brakezone THEN brake IS nobrake,accelerate IS fullgas;
-  RULE 2 : IF track9 IS f070 AND speed IS f120250 THEN brake IS fullbrake,accelerate IS nogas;
-  RULE 3 : IF track15 IS NOT f010 THEN steering IS right2;
-  RULE 4 : IF track3 IS NOT f010 THEN steering IS left2;
-  RULE 5 : IF track9 IS NOT f020 THEN steering IS center;
+//brake rules  
+  RULE 1 : IF track9 IS f060 AND speed IS f150250 THEN brake IS fullbrake,accelerate IS nogas;
+  RULE 2 : IF track9 IS f010 AND speed IS f50more THEN accelerate IS nogas;
+  RULE 3 : IF track9 IS f2040 AND speed IS f90more THEN accelerate IS nogas;
+  RULE 4 : IF track9 IS f2040 AND speed IS f110more THEN brake IS fullbrake;
+  
+//left turn
+  RULE 10 : IF track2 IS f40 THEN steering IS left3;
+  RULE 11 : IF track3 IS f40 THEN steering IS left3;
+  RULE 12: IF track5 IS f40 THEN steering IS left2;
+//right turn
+  RULE 13 : IF track16 IS f40 THEN steering IS right3;
+  RULE 14: IF track15 IS f40 THEN steering IS right3;
+  RULE 15 : IF track13 IS f40 THEN steering IS right2;
+
+//steer center
  
 
 
@@ -186,3 +216,9 @@ RULEBLOCK No1
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
+
+  RULE 2 : IF track15 IS NOT f010 THEN steering IS right3;
+  RULE 3 : IF track3 IS NOT f010 THEN steering IS left3;
+  
+  RULE 4 : IF track5 IS NOT f020 THEN steering IS left2;
+  RULE 5 : IF track13 IS NOT f020 THEN steering IS right2;
