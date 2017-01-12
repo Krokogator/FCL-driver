@@ -28,6 +28,7 @@ BETA - 65.31 s
 
 Osobisty rekord - 63.69 s (auto zdaje się inaczej zmieniać biegi na sterowniku FCL, więc możliwe, że nie da się pojechać aż tak szybko)
 
+## Eliminacje nr 2
 
 Trasa: Alpine-1
 
