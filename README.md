@@ -27,3 +27,18 @@ STABLE - 65.31 s
 BETA - 65.31 s
 
 Osobisty rekord - 63.69 s (auto zdaje się inaczej zmieniać biegi na sterowniku FCL, więc możliwe, że nie da się pojechać aż tak szybko)
+
+
+Trasa: Alpine-1
+
+Okrążenia: 1
+
+Tryb: "Tylko wyniki"
+
+Czasy:
+
+STABLE - 198.88 s
+
+BETA - 198.88 s
+
+Osobisty rekord - brak

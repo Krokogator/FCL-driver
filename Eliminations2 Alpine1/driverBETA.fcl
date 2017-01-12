@@ -85,7 +85,16 @@ FUZZIFY angle
 END_FUZZIFY
 
 FUZZIFY track9
-  TERM far := (30, 0) (40, 1) (60, 0);
+  TERM brakezone := (0, 1) (200, 1) (210, 0);
+  TERM f200250 := (180, 0) (200, 1) (250, 1);
+  TERM f150200 := (130, 0) (150, 1) (200, 1) (220, 0);
+  TERM f100150 := (80, 0) (100, 1) (150, 1) (170, 0);
+  TERM f50100 := (30, 0) (50, 1) (100, 1) (120, 0);
+  TERM f40 := (35, 0) (40, 1) (45, 0);
+  TERM f1040 := (5, 0) (10, 1) (40, 1) (45, 1);
+  TERM f070 := (0, 1) (70, 1) (75, 0);
+  TERM f020 := (0, 1) (20, 1) (21, 0);
+  TERM f010 := (0, 1) (10, 1) (15, 0);
 END_FUZZIFY
 
 FUZZIFY track6
@@ -112,6 +121,14 @@ FUZZIFY track12
 	TERM far := (10,0)(20,1)(60,0);
 END_FUZZIFY
 
+FUZZIFY track3
+	TERM f010 := (0, 1) (10, 1) (12, 0);
+END_FUZZIFY
+
+FUZZIFY track15
+	TERM f010 := (0, 1) (10, 1) (12, 0);
+END_FUZZIFY
+
 FUZZIFY track0
 	TERM close := (0,1)(1,1)(2,0);
 END_FUZZIFY
@@ -122,6 +139,8 @@ END_FUZZIFY
 
 FUZZIFY speed
   TERM cornering := (170,0)(180,1)(191, 1)(210, 0);
+  TERM f160250 := (159, 0) (160, 1) (250, 1);
+  TERM f120250 := (119, 0) (120, 1) (250, 1);
 END_FUZZIFY
 
 DEFUZZIFY steering
@@ -137,7 +156,7 @@ END_DEFUZZIFY
 DEFUZZIFY accelerate
   TERM nogas :=  (0, 1) (0.3, 1) (0.5, 0);
   TERM medgas :=  (0.3, 0) (0.7, 1) (0.8, 0);
-  TERM fullgas :=  (0.6, 0) (0.8, 1) (1, 1);
+  TERM fullgas :=  (0.99, 1) (1, 1);
   METHOD : COG;
   DEFAULT := 1.000;
 END_DEFUZZIFY
@@ -155,13 +174,11 @@ RULEBLOCK No1
   ACCU : MAX;
   
 
-  RULE 1 : IF track9 IS far AND track6 IS far THEN steering IS right2;
-  RULE 2 : IF track9 IS far AND track12 IS far THEN steering IS left2;
-  RULE 3 : IF track0 IS close AND track11 IS far THEN steering IS right1;
-  RULE 4 : IF track18 IS close AND track7 IS far THEN steering IS left1;
-  RULE 5 : IF speed IS cornering THEN steering IS center;
-  RULE 6 : IF track9 IS far AND track8 IS close THEN steering IS right2;
-  RULE 7 : IF track9 IS far AND track10 IS close THEN steering IS left2;
+  RULE 1 : IF track9 IS NOT brakezone THEN brake IS nobrake,accelerate IS fullgas;
+  RULE 2 : IF track9 IS f070 AND speed IS f120250 THEN brake IS fullbrake,accelerate IS nogas;
+  RULE 3 : IF track15 IS NOT f010 THEN steering IS right2;
+  RULE 4 : IF track3 IS NOT f010 THEN steering IS left2;
+  RULE 5 : IF track9 IS NOT f020 THEN steering IS center;
  
 
 
