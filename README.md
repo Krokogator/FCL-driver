@@ -42,4 +42,6 @@ STABLE - 192.82 s  (nie rozbija się)
 
 BETA - 152.50 (rozbija się, ale jest szybszy)
 
-Osobisty rekord - 148.57s
+BETA2 - 136.82 (dojeżdża do mety i to jest ważne :D)
+
+Osobisty rekord - 131.96s
